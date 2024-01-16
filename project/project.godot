@@ -11,6 +11,7 @@ config_version=5
 [application]
 
 config/name="Erpday Farm"
+run/main_scene="res://scenes/under_construction.tscn"
 config/features=PackedStringArray("4.2", "GL Compatibility")
 config/icon="res://frog_icon.png"
 
@@ -22,6 +23,7 @@ window/size/mode=3
 window/size/borderless=true
 window/stretch/mode="canvas_items"
 window/size/mode.debug=0
+window/size/borderless.debug=false
 
 [rendering]
 

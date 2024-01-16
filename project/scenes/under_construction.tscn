@@ -1,0 +1,95 @@
+[gd_scene load_steps=6 format=3 uid="uid://docay7vxc1ld6"]
+
+[ext_resource type="Texture2D" uid="uid://bhx4u7qxcff6" path="res://frog_icon.png" id="1_tygn8"]
+[ext_resource type="AudioStream" uid="uid://cny5trk1gawi1" path="res://assets/sfx/frog_ribbit.ogg" id="2_y60va"]
+
+[sub_resource type="Animation" id="Animation_xi0s4"]
+resource_name = "under_construction"
+length = 5.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FrogIcon:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.3, 1.6, 1.9, 2.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1, 1), Vector2(1.1, 1.05), Vector2(1, 1), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AudioStreamPlayer:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="Animation" id="Animation_pvqco"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FrogIcon:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AudioStreamPlayer:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_74jj0"]
+_data = {
+"RESET": SubResource("Animation_pvqco"),
+"under_construction": SubResource("Animation_xi0s4")
+}
+
+[node name="Under Construction" type="Node2D"]
+
+[node name="FrogIcon" type="Sprite2D" parent="."]
+position = Vector2(985, 300)
+texture = ExtResource("1_tygn8")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/CenterContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+text = "~ Under Construction ~"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_74jj0")
+}
+autoplay = "under_construction"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_y60va")
